@@ -1,0 +1,16 @@
+#zsh config
+#Version:	2
+#Author:	dudas
+#Requirements:	powerline
+
+#variables for config
+	local conf_wdir=~/.files/zsh
+
+#global vars
+	export EDITOR=vim
+
+source $conf_wdir/prmpt
+source $conf_wdir/opt
+source $conf_wdir/alias
+
+#~/bin/status.py

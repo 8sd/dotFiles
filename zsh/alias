@@ -1,0 +1,29 @@
+#aliases
+	#std alias
+		alias grep='grep -n --color' #grep always with colors
+		alias l='pwd; ls  --color -la'
+		alias l='ls --color'
+		alias ls='pwd;ls -la --color'
+		alias mkdir='mkdir -p'
+
+	#Global Aliases
+		alias -g G="| grep"
+		alias -g bg=">/dev/null 2>&1 &"
+
+	#ssh
+		##uni
+			alias cip='ssh ro77zini@faui06a.cs.fau.de'
+		##priv
+			alias vs='ssh dudas@duda.pub'
+			alias vsip='ssh dudas@80.241.215.178'
+			alias pi='ssh pi@192.168.178.105'
+		alias slog="ssh -t dudas@80.241.215.178 tmux a -t server"
+
+	#Config
+		alias zshrc='vim ~/.files/zsh/conf && source ~/.zshrc'
+
+	#Other
+		alias alpine='qemu-kvm -hda ~/bin/alpine/alpine.qcow -boot d -net nic -net user -m 256 -localtime'
+		
+	#Suffixes
+	alias -s pdf='okular bg'
