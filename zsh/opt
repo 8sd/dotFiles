@@ -12,15 +12,6 @@
 	
 	stty -ixon
 
-	#Completion
-		zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-		zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
-		zstyle ':completion:*' max-errors 3
-		setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word    
-		setopt auto_menu # show completion menu on successive tab press. needs unsetop menu_complete to work
-		setopt complete_in_word # Allow completion from within a word/phrase
-		unsetopt menu_complete # do not autoselect the first completion entry
-
 	setopt autocd # if only a path is entered zsh will cd in that path
 
 	setopt pushd_to_home # pushd on empty stack will cd to home 
