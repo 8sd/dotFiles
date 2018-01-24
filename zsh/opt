@@ -27,3 +27,14 @@
 	#prevent git using ksshaskpass
 	unset GIT_ASKPASS 
 	unset SSH_ASKPASS
+
+#end pos1 del
+	#bindkey -e
+	bindkey    "\e[3~"    delete-char
+
+	bindkey    "^[[H"    beginning-of-line
+	bindkey    "^[[F"    end-of-line
+
+	bindkey    "^[OH"    beginning-of-line
+	bindkey    "^[OF"    end-of-line
+	
