@@ -24,6 +24,14 @@
 
 	#Other
 		alias alpine='qemu-kvm -hda ~/bin/alpine/alpine.qcow -boot d -net nic -net user -m 256 -localtime'
+		alias inst='sudo pacman -Syu'
 		
 	#Suffixes
 	alias -s pdf='okular bg'
+
+#Arch alias
+	#alias update="sudo pacman -Syu"
+	#alias remove="sudo pacman -Rs"
+	alias update="trizen -Syua"
+	alias remove="trizen -Rs"
+	alias install="trizen -S"
