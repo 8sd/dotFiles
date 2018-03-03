@@ -4,3 +4,6 @@
 #	/usr/share/powerline/zsh/powerline.zsh
 #	TMOUT=5 #reload shell all 5 seconds → consumes less energy
 #	TRAPALRM(){zle reset-prompt}
+
+#zsh-autosuggestions
+source ~/.files/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

@@ -5,6 +5,7 @@
 		alias l='ls --color'
 		alias ls='pwd;ls -la --color'
 		alias mkdir='mkdir -p'
+		alias v=vim
 
 	#Global Aliases
 		alias -g G="| grep"
@@ -14,7 +15,7 @@
 		##uni
 			alias cip='ssh ro77zini@faui06a.cs.fau.de'
 		##priv
-			alias vs='ssh dudas@duda.pub'
+			alias vs='ssh vs'
 			alias vsip='ssh dudas@80.241.215.178'
 			alias pi='ssh pi@192.168.178.105'
 		alias slog="ssh -t dudas@80.241.215.178 tmux a -t server"
@@ -24,7 +25,6 @@
 
 	#Other
 		alias alpine='qemu-kvm -hda ~/bin/alpine/alpine.qcow -boot d -net nic -net user -m 256 -localtime'
-		alias inst='sudo pacman -Syu'
 		
 	#Suffixes
 	alias -s pdf='okular bg'
@@ -32,6 +32,16 @@
 #Arch alias
 	#alias update="sudo pacman -Syu"
 	#alias remove="sudo pacman -Rs"
-	alias update="trizen -Syua"
+	alias update="trizen -Syu" #; trizen -Syua"
 	alias remove="trizen -Rs"
 	alias install="trizen -S"
+
+
+#osr
+cmsuitevm () {
+	VBoxHeadless --startvm "CMSuite" &
+	sleep 10
+	ssh cmsuite@localhost -p 10022
+	VBoxManage controlvm "CMSuite" acpipowerbutton
+}
+alias cmsuitecom="ssh cmsuite@localhost -p 10022"
