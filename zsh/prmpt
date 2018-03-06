@@ -1,7 +1,10 @@
 #powerline incusion
 	powerline-daemon -q
-	source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-#	/usr/share/powerline/zsh/powerline.zsh
+	if [ -f /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]; then
+		source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+	elif [ -f /usr/share/powerline/bindings/zsh/powerline.zsh ]; then
+		source /usr/share/powerline/bindings/zsh/powerline.zsh
+	fi
 #	TMOUT=5 #reload shell all 5 seconds → consumes less energy
 #	TRAPALRM(){zle reset-prompt}
 

@@ -45,3 +45,18 @@ cmsuitevm () {
 	VBoxManage controlvm "CMSuite" acpipowerbutton
 }
 alias cmsuitecom="ssh cmsuite@localhost -p 10022"
+
+#VS
+alias ensite="sudo /home/dudas/src/nginx.sh ensite"
+
+#Docker
+alias dls="docker ps -a" 
+dp () {
+	docker stop $@;
+	docker rm $@;
+}
+
+dr () {
+	docker stop $@;
+	docker start $@;
+}
