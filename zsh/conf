@@ -1,14 +1,13 @@
 #zsh config
-#Version:	2
+#Version:	3
 #Author:	dudas
-#Requirements:	powerline
 
 #global vars
 export EDITOR=vim
 
 eval $(dircolors $CONFDIR/dircolors)
-source $CONFDIR/prmpt
 source $CONFDIR/opt
+source $CONFDIR/prmpt
 source $CONFDIR/alias
 
 if [ -f ~/src/zshautostart.sh ]; then

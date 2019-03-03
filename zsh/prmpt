@@ -1,4 +1,8 @@
 #/usr/bin/zsh
+
+#zsh-autosuggestions
+source $CONFDIR/zsh-autosuggestions/zsh-autosuggestions.zsh;
+
 # usr > dev > path > git > err                       bat < time
 
 precmd () {
@@ -37,7 +41,4 @@ preexec () {
 	# ansi escape codes: move up one line, then move right so the time fits
 	print -P "\033[1A\033[${right_start}C%K{53} ${date}%k"
 }
-
-#zsh-autosuggestions
-source $CONFDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
