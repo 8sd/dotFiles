@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ -f ~/.zshrc ]; then rm ~/.zshrc; fi
-if [ -f ~/.vimrc ]; then rm ~/.vimrc; fi
+rm -f ~/.zshrc
+rm -f ~/.vimrc
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
