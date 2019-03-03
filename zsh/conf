@@ -3,20 +3,16 @@
 #Author:	dudas
 #Requirements:	powerline
 
-#variables for config
-	local conf_wdir=~/.files/zsh
-
 #global vars
-	export EDITOR=vim
+export EDITOR=vim
 
-eval $(dircolors $conf_wdir/dircolors)
-source $conf_wdir/spectrum
-source $conf_wdir/prmpt
-source $conf_wdir/opt
-source $conf_wdir/alias
+eval $(dircolors $CONFDIR/dircolors)
+source $CONFDIR/spectrum
+source $CONFDIR/prmpt
+source $CONFDIR/opt
+source $CONFDIR/alias
 
 if [ -f ~/src/zshautostart.sh ]; then
 	~/src/zshautostart.sh;
 fi
 
-#~/bin/status.py
