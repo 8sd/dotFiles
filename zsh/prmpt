@@ -18,9 +18,11 @@ precmd () {
 	#	esac
 	#esac ;
 
-	local bat_capacity="$( cat /sys/class/power_supply/BAT0/capacity )"
-	local bat="⚡︎$bat_capacity"
-	local bat_color=14
+	if [ -f /sys/class/power_supply/BAT0/capacity ]; then
+		local bat_capacity="$( cat /sys/class/power_supply/BAT0/capacity )";
+		local bat_color=14;
+		local bat=" %F{$bat_color}%K{$bat_color}%f ⚡︎$bat_capacity";
+	fi
 
 	if [ -d $PWD/.git ]; then 
 		local git_branch="$(git rev-parse --abbrev-ref HEAD)";
@@ -37,7 +39,7 @@ precmd () {
 	local error="%(?..%K{9}%f %? %F{9})"
 
 	PROMPT="%K{208} %n %F{208}%K{39}%f %m %F{39}%K{239}%f %~ %F{239}$git$error%k%f "
-	RPROMPT=" %F{$bat_color}%K{$bat_color}%f $bat %F{53}%K{53}%f %* "
+	RPROMPT="$bat %F{53}%K{53}%f %* "
 }
 
 preexec () {
@@ -52,5 +54,5 @@ preexec () {
 }
 
 #zsh-autosuggestions
-source ~/.files/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $CONFDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
