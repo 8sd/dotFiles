@@ -20,7 +20,7 @@
 			alias cip='ssh ro77zini@faui06a.cs.fau.de'
 		##priv
 			alias vs='ssh vs'
-			alias lightctrl='ssh lightctrl'
+			alias lightpi='ssh lightpi'
 			alias soundpi='ssh soundpi'
 			alias nas='ssh nas'
 
