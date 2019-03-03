@@ -15,6 +15,8 @@ source $conf_wdir/prmpt
 source $conf_wdir/opt
 source $conf_wdir/alias
 
-~/src/zshautostart.sh
+if [ -f ~/src/zshautostart.sh ]; then
+	~/src/zshautostart.sh;
+fi
 
 #~/bin/status.py
