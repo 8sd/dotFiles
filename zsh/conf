@@ -7,7 +7,6 @@
 export EDITOR=vim
 
 eval $(dircolors $CONFDIR/dircolors)
-source $CONFDIR/spectrum
 source $CONFDIR/prmpt
 source $CONFDIR/opt
 source $CONFDIR/alias
