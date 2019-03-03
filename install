@@ -2,4 +2,4 @@
 
 ln -s ~/.files/zsh/conf ~/.zshrc
 ln -s ~/.files/vimrc ~/.vimrc
-ls ln -s ~/.files/powerline/ ~/.config/powerline
+

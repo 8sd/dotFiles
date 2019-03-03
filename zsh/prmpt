@@ -1,12 +1,56 @@
-#powerline incusion
-	powerline-daemon -q
-	if [ -f /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]; then
-		source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-	elif [ -f /usr/share/powerline/bindings/zsh/powerline.zsh ]; then
-		source /usr/share/powerline/bindings/zsh/powerline.zsh
-	fi
-#	TMOUT=5 #reload shell all 5 seconds → consumes less energy
-#	TRAPALRM(){zle reset-prompt}
+#/usr/bin/zsh
+# usr > dev > path > git > err                       bat < time
+
+precmd () {
+	#TODO Battery color (Normal, Charging, Low)
+	#case $( /sys/class/power_supply/BAT0/status ) in
+	#"Charging")
+	#	local bat_status=c
+	#	;;
+	#*)
+	#	case $( /sys/class/power_supply/BAT0/status ) in
+	#	"Normal")
+	#		local bat_status=n
+	#		;;
+	#	*)
+	#		local bat_status=e
+	#		;;
+	#	esac
+	#esac ;
+
+	local bat_capacity="$( cat /sys/class/power_supply/BAT0/capacity )"
+	local bat="⚡︎$bat_capacity"
+	local bat_color=14
+
+	if [ -d $PWD/.git ]; then 
+		local git_branch="$(git rev-parse --abbrev-ref HEAD)";
+		git diff --exit-code --quiet;
+		if [ $? -eq 0 ]; then 
+			local git="%K{22}%f $git_branch %F{22}";
+		else 
+			local git="%K{22}%F{11} $git_branch %F{22}";
+		fi;
+	else
+		local git="";
+	fi;
+
+	local error="%(?..%K{9}%f %? %F{9})"
+
+	PROMPT="%K{208} %n %F{208}%K{39}%f %m %F{39}%K{239}%f %~ %F{239}$git$error%k%f "
+	RPROMPT=" %F{$bat_color}%K{$bat_color}%f $bat %F{53}%K{53}%f %* "
+}
+
+preexec () {
+	date=`date +"%H:%M:%S"`
+	local len_right=`echo $date | wc -c`
+	date="$date"
+	len_right=$(( $len_right + 2))
+	local right_start=$(($COLUMNS - $len_right))
+
+	# ansi escape codes: move up one line, then move right so the time fits
+	print -P "\033[1A\033[${right_start}C%K{53} ${date}%k"
+}
 
 #zsh-autosuggestions
 source ~/.files/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+

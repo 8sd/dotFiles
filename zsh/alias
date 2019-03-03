@@ -6,26 +6,30 @@
 		alias ls='pwd;ls -la --color'
 		alias mkdir='mkdir -p'
 		alias v=vim
+		alias dmesg='dmesg -w'
 
 	#Global Aliases
 		alias -g G="| grep"
 		alias -g bg=">/dev/null 2>&1 &"
+
+	#git 
+		alias gc="git clone"
 
 	#ssh
 		##uni
 			alias cip='ssh ro77zini@faui06a.cs.fau.de'
 		##priv
 			alias vs='ssh vs'
-			alias vsip='ssh dudas@80.241.215.178'
-			alias pi='ssh pi@192.168.178.105'
-		alias slog="ssh -t dudas@80.241.215.178 tmux a -t server"
+			alias lightctrl='ssh lightctrl'
+			alias soundpi='ssh soundpi'
+			alias nas='ssh nas'
 
 	#Config
 		alias zshrc='vim ~/.files/zsh/conf && source ~/.zshrc'
 
 	#Other
-		alias alpine='qemu-kvm -hda ~/bin/alpine/alpine.qcow -boot d -net nic -net user -m 256 -localtime'
-		
+		alias httpd='docker run -dit -p 80:80 -v $PWD:/usr/local/apache2/htdocs/ httpd'
+
 	#Suffixes
 	alias -s pdf='okular bg'
 
@@ -36,15 +40,44 @@
 	alias remove="trizen -Rs"
 	alias install="trizen -S"
 
+#KDE Alias
+	alias unlock="loginctl unlock-session 1"
 
 #osr
-cmsuitevm () {
-	VBoxHeadless --startvm "CMSuite" &
-	sleep 10
-	ssh cmsuite@localhost -p 10022
-	VBoxManage controlvm "CMSuite" acpipowerbutton
+alias cms="ssh vs cms"
+cmscommit () {
+	mvn license:format;
+	git status;
+	if [ -z ${1+x} ]; then git commit .; else git commit $1; fi
 }
-alias cmsuitecom="ssh cmsuite@localhost -p 10022"
+
+cmsbnr () {
+	echo "building cmsuite…";
+	mvn deploy -DskipTests -P local-build;
+	echo "cmsuite builded; launching suite";
+	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-test/docker-compose.yml up &;
+	sleep 20;
+	echo "cmsuite is up, waiting for test end…"
+	kdialog --passivepopup 'environments setup, waiting for manual tests' --title 'cmsuite';
+	read;
+	echo "shutting down…"
+	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-test/docker-compose.yml down;
+	echo "done…"
+}
+
+cmsintegration () {
+	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-integration/docker-compose.yml up -d;
+	mvn deploy -P local-build;
+	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-integration/docker-compose.yml down;
+}
+
+cmslaunch () {
+	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-test/docker-compose.yml up &;
+	read;
+	echo "shutting down…"
+	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-test/docker-compose.yml down;
+
+}
 
 #VS
 alias ensite="sudo /home/dudas/src/nginx.sh ensite"
@@ -60,3 +93,13 @@ dr () {
 	docker stop $@;
 	docker start $@;
 }
+
+#VBox
+win10 () {
+	lsmod | grep vbox > /dev/null;
+	if [ $? -ne 0 ]; then 
+		sudo modprobe vboxnetflt vboxnetadp vboxpci vboxdrvi;
+	fi
+	VBoxManage startvm "Win10";
+}
+

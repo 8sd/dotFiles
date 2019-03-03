@@ -38,3 +38,6 @@
 	bindkey    "^[OH"    beginning-of-line
 	bindkey    "^[OF"    end-of-line
 	
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools

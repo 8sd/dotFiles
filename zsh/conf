@@ -9,8 +9,12 @@
 #global vars
 	export EDITOR=vim
 
+eval $(dircolors $conf_wdir/dircolors)
+source $conf_wdir/spectrum
 source $conf_wdir/prmpt
 source $conf_wdir/opt
 source $conf_wdir/alias
+
+~/src/zshautostart.sh
 
 #~/bin/status.py
