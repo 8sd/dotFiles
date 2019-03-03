@@ -8,8 +8,8 @@ precmd () {
 		local bat=" %F{$bat_color}%K{$bat_color}%f ⚡︎$bat_capacity";
 	fi
 
-	git rev-parse --is-inside-work-tree 2&> /dev/null
-	if [ $? ]; then 
+	git rev-parse --is-inside-work-tree > /dev/null 2>&1;
+	if [ $? -eq 0 ]; then 
 		local git_branch="$(git rev-parse --abbrev-ref HEAD)";
 		git diff --exit-code --quiet;
 		if [ $? -eq 0 ]; then 
@@ -23,7 +23,7 @@ precmd () {
 
 	local error="%(?..%K{9}%f %? %F{9})"
 
-	PROMPT="%K{208} %n %F{208}%K{39}%f %m %F{39}%K{239}%f %~ %F{239}$git$error%k%f "
+	PROMPT="%K{208} %n %F{208}%K{$DEVCOLOR}%f %m %F{$DEVCOLOR}%K{239}%f %~ %F{239}$git$error%k%f "
 	RPROMPT="$bat %F{53}%K{53}%f %* "
 }
 
