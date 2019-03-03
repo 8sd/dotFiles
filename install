@@ -1,5 +1,8 @@
 #!/bin/bash
 
+if [ -f ~/.zshrc ]; then rm ~/.zshrc; fi
+if [ -f ~/.vimrc ]; then rm ~/.vimrc; fi
+
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 echo "export CONFDIR=$SCRIPTPATH/zsh" > ~/.zshrc
