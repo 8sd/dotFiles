@@ -1,5 +1,8 @@
 #!/bin/bash
 
-ln -s ~/.files/zsh/conf ~/.zshrc
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+echo "export CONFDIR=$SCRIPTPATH" > ~/.zshrc
+cat ~/.files/zsh/conf >> ~/.zshrc
 ln -s ~/.files/vimrc ~/.vimrc
 
