@@ -2,29 +2,14 @@
 # usr > dev > path > git > err                       bat < time
 
 precmd () {
-	#TODO Battery color (Normal, Charging, Low)
-	#case $( /sys/class/power_supply/BAT0/status ) in
-	#"Charging")
-	#	local bat_status=c
-	#	;;
-	#*)
-	#	case $( /sys/class/power_supply/BAT0/status ) in
-	#	"Normal")
-	#		local bat_status=n
-	#		;;
-	#	*)
-	#		local bat_status=e
-	#		;;
-	#	esac
-	#esac ;
-
 	if [ -f /sys/class/power_supply/BAT0/capacity ]; then
 		local bat_capacity="$( cat /sys/class/power_supply/BAT0/capacity )";
 		local bat_color=14;
 		local bat=" %F{$bat_color}%K{$bat_color}%f ⚡︎$bat_capacity";
 	fi
 
-	if [ -d $PWD/.git ]; then 
+	git rev-parse --is-inside-work-tree 2&> /dev/null
+	if [ $? ]; then 
 		local git_branch="$(git rev-parse --abbrev-ref HEAD)";
 		git diff --exit-code --quiet;
 		if [ $? -eq 0 ]; then 
