@@ -8,4 +8,5 @@ SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 echo "export CONFDIR=$SCRIPTPATH/zsh" > ~/.zshrc
 cat $SCRIPTPATH/zsh/conf >> ~/.zshrc
 ln -s $SCRIPTPATH/vimrc ~/.vimrc
+git submodule update --init --recursive
 
