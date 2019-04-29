@@ -6,7 +6,8 @@
 		alias ls='pwd;ls -la --color'
 		alias mkdir='mkdir -p'
 		alias v=vim
-		alias dmesg='dmesg -w'
+		alias dmesg='echo "run journalctl SYSLOG_FACILITY=0"'
+		alias fdmesg='dmesg -w'
 
 	#Global Aliases
 		alias -g G="| grep"
@@ -18,6 +19,7 @@
 	#ssh
 		##uni
 			alias cip='ssh ro77zini@faui06a.cs.fau.de'
+			alias hydra='ssh hydra'
 		##priv
 			alias vs='ssh vs'
 			alias lightpi='ssh lightpi'
@@ -42,42 +44,6 @@
 
 #KDE Alias
 	alias unlock="loginctl unlock-session 1"
-
-#osr
-alias cms="ssh vs cms"
-cmscommit () {
-	mvn license:format;
-	git status;
-	if [ -z ${1+x} ]; then git commit .; else git commit $1; fi
-}
-
-cmsbnr () {
-	echo "building cmsuite…";
-	mvn deploy -DskipTests -P local-build;
-	echo "cmsuite builded; launching suite";
-	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-test/docker-compose.yml up &;
-	sleep 20;
-	echo "cmsuite is up, waiting for test end…"
-	kdialog --passivepopup 'environments setup, waiting for manual tests' --title 'cmsuite';
-	read;
-	echo "shutting down…"
-	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-test/docker-compose.yml down;
-	echo "done…"
-}
-
-cmsintegration () {
-	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-integration/docker-compose.yml up -d;
-	mvn deploy -P local-build;
-	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-integration/docker-compose.yml down;
-}
-
-cmslaunch () {
-	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-test/docker-compose.yml up &;
-	read;
-	echo "shutting down…"
-	docker-compose -f ~/src/cmsuite/docker/compose-environments/cmsuite-test/docker-compose.yml down;
-
-}
 
 #VS
 alias ensite="sudo /home/dudas/src/nginx.sh ensite"

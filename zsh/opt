@@ -43,6 +43,6 @@
 	bindkey "^[[A" history-search-backward # start typing + [Up-Arrow] - fuzzy find history forward
 	bindkey "^[[B" history-search-forward # start typing + [Down-Arrow] - fuzzy find history backward
 	
-export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_HOME=/opt/android-sdk/
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools

@@ -25,7 +25,7 @@ precmd () {
 	local error="%(?..%K{9}%f %? %F{9})"
 
 	PROMPT="%K{208} %n %F{208}%K{$DEVCOLOR}%f %m %F{$DEVCOLOR}%K{239}%f %~ %F{239}$git$error%k%f "
-	RPROMPT="$bat %F{53}%K{53}%f %* "
+	RPROMPT="$bat %F{53}%K{53}%f %D{%H:%M:%S} "
 }
 
 preexec () {

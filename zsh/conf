@@ -1,17 +1,4 @@
-#zsh config
-#Version:	3
-#Author:	dudas
 
 #global vars
 export EDITOR=vim
 
-eval $(dircolors $CONFDIR/dircolors)
-source $CONFDIR/opt
-source $CONFDIR/prmpt
-source $CONFDIR/alias
-
-if [ -f ~/src/zshautostart.sh ]; then
-	~/src/zshautostart.sh;
-fi
-
-export DEVCOLOR=
